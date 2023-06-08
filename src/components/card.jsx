@@ -1,6 +1,6 @@
 import { motion, MotionConfig } from "framer-motion";
 import { useState } from "react";
-import { Card, Text } from "@nextui-org/react";
+import { Text } from "@nextui-org/react";
 import useMeasure from "react-use-measure";
 import { transition, transitionLong } from "@/utils/setting";
 
@@ -69,9 +69,9 @@ export default function Box(props) {
                     }}
                     weight="bold"
                 >
-                    {props.name}
+                    {props.character.name}
                 </Text>
-                <img src={props.image} className='h-[420px] w-[420px] object-cover rounded-lg z-20 drop-shadow-[10px_20px_7px_rgba(171,160,166,0.65)] hover:drop-shadow-[20px_40px_15px_rgba(255,99,71,0.5)] duration-300 hover:duration-300' />
+                <img src={props.character.image} className='h-[420px] w-[420px] object-cover rounded-lg z-20 drop-shadow-[10px_20px_7px_rgba(171,160,166,0.65)] hover:drop-shadow-[20px_40px_15px_rgba(255,99,71,0.5)] duration-300 hover:duration-300' />
 
                 <div className="flex flex-row rounded-full bg-white mt-16 w-[300px] h-[36px] z-20 pl-4 ml-[60px]">
                     <Text
@@ -90,7 +90,7 @@ export default function Box(props) {
                         weight="normal"
                         css={{lineHeight: '12px'}}
                     >
-                        {props.anime}
+                        {props.character.anime}
                     </Text>
                 </div>
             </motion.div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, MotionConfig } from 'framer-motion';
 import { transition } from "@/utils/setting";
 import Box from '@/components/card';
+import { CharacterData } from '@/utils/characterdata';
 
 export default function Popular() {
 
@@ -11,6 +12,7 @@ export default function Popular() {
   const [isSelectable, setIsselectable] = useState(false);
   const [animationCompleted, setAnimationCompleted] = useState(false);
 
+  {/* handle Selection */}
   const handleSelect1 = (event) => {
     if (!isSelectable) {
       setIsselectable(true)
@@ -25,10 +27,12 @@ export default function Popular() {
       setIsSelect2(true);
   }};
 
+  {/* handle after selection */}
   const resetSelect = () => {
-    if (!animationCompleted) {
+    if (!animationCompleted && isSelectable) {
     console.log("Animation complete");
-
+    //update data character
+    // ..
     setAnimationCompleted(true);
   }};
 
@@ -37,18 +41,18 @@ export default function Popular() {
       {/* background */}
       <motion.div className=" bg-red-100 w-[50vw] h-[100vh] absolute z-0"
         animate={{ opacity: 1, x: 0 }} 
-        onAnimationComplete={{}} >
+      >
       </motion.div>
-      
+
       <motion.div className=" bg-blue-100 w-[50vw] h-[100vh] absolute z-0"
         animate={{ opacity: 1, x: '50vw' }}
-        onAnimationComplete={{}} >
+      >
       </motion.div>
 
-      {/* Content */}
+      {/* Content box*/}
       <div className='flex flex-row z-10'>
 
-        {/* left content */}
+        {/* left content (first character) */}
         <motion.button className='flex w-[50vw] h-screen justify-center justify-items-center'
           animate={isSelect1 ? "selected" : "idle"}
           variants={{
@@ -59,13 +63,11 @@ export default function Popular() {
           onAnimationComplete={resetSelect}
         >
           <Box
-            name='Tania'
-            image='/images/tania.jpg'
-            anime='Beast tamer'
+            character={CharacterData[0]}
           />
         </motion.button>
 
-        {/* right content */}
+        {/* right content (second character) */}
         <motion.button className='flex w-[50vw] h-screen left-[50vw] justify-center justify-items-center'
           animate={isSelect2 ? "selected" : "idle"}
           variants={{
@@ -76,9 +78,7 @@ export default function Popular() {
           onAnimationComplete={resetSelect}
         >
           <Box
-            name='Fran'
-            image='/images/fran.jpg'
-            anime='Reincarnated as a sword'
+            character={CharacterData[1]}
           />
         </motion.button>
       </div>
