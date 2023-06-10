@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const RoundRobinTournament = ({ teams }) => {
+const RoundRobinTournament = ({ Characters }) => {
   const [schedule, setSchedule] = useState([]);
   const [points, setPoints] = useState({});
-  const [isTiebreakerRound, setIsTiebreakerRound] = useState(false);
   const [currentRound, setCurrentRound] = useState(1);
   const [showNext, setShowNext] = useState(true);
   const [showResult, setShowResult] = useState(false);
@@ -12,25 +11,26 @@ const RoundRobinTournament = ({ teams }) => {
     generateSchedule();
   }, []);
 
+  // generate the schedule 
   const generateSchedule = () => {
     const matches = [];
 
-    // Initialize points for each team
+    // Initialize points for each item
     const initialPoints = {};
-    teams.forEach((team) => {
-      initialPoints[team] = 0;
+    Characters.forEach((item) => {
+      initialPoints[item] = 0;
     });
     setPoints(initialPoints);
 
     // Generate matches for the initial rounds
-    for (let i = 0; i < teams.length - 1; i++) {
-      for (let j = 0; j < teams.length / 2; j++) {
-        const Left = teams[j];
-        const Right = teams[teams.length - 1 - j];
+    for (let i = 0; i < Characters.length - 1; i++) {
+      for (let j = 0; j < Characters.length / 2; j++) {
+        const Left = Characters[j];
+        const Right = Characters[Characters.length - 1 - j];
         matches.push({ Left, Right });
       }
-      // Rotate teams for the next round
-      teams.splice(1, 0, teams.pop());
+      // Rotate Characters for the next round
+      Characters.splice(1, 0, Characters.pop());
     }
     setSchedule(matches);
   };
@@ -50,68 +50,67 @@ const RoundRobinTournament = ({ teams }) => {
     setSchedule(updatedSchedule);
   };
 
-  const rankTeams = () => {
-    const teamsWithPoints = Object.entries(points).map(([team, point]) => ({ team, point }));
+  const rankCharacters = () => {
+    const CharactersWithPoints = Object.entries(points).map(([item, point]) => ({ item, point }));
 
-    // Sort teams by points in descending order
-    const rankedTeams = teamsWithPoints.sort((a, b) => b.point - a.point);
+    // Sort Characters by points in descending order
+    const rankedCharacters = CharactersWithPoints.sort((a, b) => b.point - a.point);
 
-    // Assign ranks to teams
-    rankedTeams.forEach((team, index) => {
-      team.rank = index + 1;
+    // Assign ranks to Characters
+    rankedCharacters.forEach((item, index) => {
+      item.rank = index + 1;
     });
-
-    return rankedTeams;
+    return rankedCharacters;
   };
 
-  const rankedTeams = rankTeams();
+  const rankedCharacters = rankCharacters();
 
-  // find tie teams by points
-  const findTiedTeams = () => {
-    if (rankedTeams.length > 0) {
+  // find tie Characters by points
+  const findTiedCharacters = () => {
+    if (rankedCharacters.length > 0) {
       const pointsMap = new Map();
-      rankedTeams.forEach(team => {
-        const { point } = team;
+      rankedCharacters.forEach(item => {
+        const { point } = item;
         if (pointsMap.has(point)) {
-          pointsMap.get(point).push(team);
+          pointsMap.get(point).push(item);
         } else {
-          pointsMap.set(point, [team]);
+          pointsMap.set(point, [item]);
         }
       });
 
-      const tiedTeams = Array.from(pointsMap.values())
-        .filter(teams => teams.length > 1)
-        .flatMap(teams => teams);
+      const tiedCharacters = Array.from(pointsMap.values())
+        .filter(Characters => Characters.length > 1)
+        .flatMap(Characters => Characters);
 
-      return tiedTeams;
+      return tiedCharacters;
     } else {
       return [];
     }
   };
 
   const generateTiebreakerMatches = () => {
-    const tiedTeams = findTiedTeams();
+    const tiedCharacters = findTiedCharacters();
   
-    if (tiedTeams.length > 1) {
+    if (tiedCharacters.length > 1) {
       const tiebreakerMatches = [];
   
-      // Group tied teams based on their points
-      const teamsByPoints = {};
-      tiedTeams.forEach(team => {
-        const { point } = team;
-        if (!teamsByPoints[point]) {
-          teamsByPoints[point] = [team];
+      // Group tied Characters based on their points
+      const CharactersByPoints = {};
+      tiedCharacters.forEach(item => {
+        const { point } = item;
+        if (!CharactersByPoints[point]) {
+          CharactersByPoints[point] = [item];
         } else {
-          teamsByPoints[point].push(team);
+          CharactersByPoints[point].push(item);
         }
       });
   
-      // Generate tiebreaker matches for teams with the same points
-      Object.values(teamsByPoints).forEach(teams => {
-        for (let i = 0; i < teams.length - 1; i++) {
-          for (let j = i + 1; j < teams.length; j++) {
-            const Left = teams[i].team;
-            const Right = teams[j].team;
+      // Generate tiebreaker matches for Characters with the same points
+      Object.values(CharactersByPoints).forEach(Characters => {
+        for (let i = 0; i < Characters.length - 1; i++) {
+          for (let j = i + 1; j < Characters.length; j++) {
+            const Left = Characters[i].item;
+            const Right = Characters[j].item;
             tiebreakerMatches.push({ Left, Right });
           }
         }
@@ -129,25 +128,12 @@ const RoundRobinTournament = ({ teams }) => {
     if (tiebreakerMatches.length > 0) {
       const updatedSchedule = [...schedule, ...tiebreakerMatches];
       setSchedule(updatedSchedule);
-      setIsTiebreakerRound(true);
     }
   };
 
-  useEffect(() => {
-    if (!isAllPointsUnique()) {
-      setIsTiebreakerRound(true);
-    }
-  }, [points]);
-
-  useEffect(() => {
-    if (isAllPointsUnique()) {
-      setIsTiebreakerRound(false);
-    }
-  }, [rankedTeams]);
-
   const isAllPointsUnique = () => {
     const uniquePoints = [...new Set(Object.values(points))];
-    return uniquePoints.length === rankedTeams.length;
+    return uniquePoints.length === rankedCharacters.length;
   };
 
   // handle current rounds
@@ -155,7 +141,6 @@ const RoundRobinTournament = ({ teams }) => {
     if (!isAllPointsUnique()) {
       if (currentRound >= schedule.length) {
         addTiebreakerRound();
-        setIsTiebreakerRound(true);
       }
     const nextRound = currentRound + 1;
     setCurrentRound(nextRound);
@@ -189,8 +174,8 @@ const RoundRobinTournament = ({ teams }) => {
         <button onClick={handleShowNextRound}>Next Round</button>
       )}
       <h2>Points</h2>
-      {rankedTeams.map((team, index) => (
-        <p key={index}>{team.team}: {team.point} points</p>
+      {rankedCharacters.map((item, index) => (
+        <p key={index}>{item.item}: {item.point} points</p>
       ))}
       {showResult && (
         <p>we got final answer</p>
