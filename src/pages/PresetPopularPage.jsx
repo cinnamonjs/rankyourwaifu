@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, MotionConfig } from 'framer-motion';
 import { transition } from "@/utils/setting";
 import Box from '@/components/card';
-import { CharacterData } from '@/utils/characterdata';
+import { CharacterData } from '@/data/characterdata';
 
 export default function Popular() {
 
