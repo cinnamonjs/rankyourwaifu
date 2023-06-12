@@ -4,6 +4,7 @@ import { Text } from "@nextui-org/react";
 import useMeasure from "react-use-measure";
 import { transition, transitionLong } from "@/utils/setting";
 
+
 export const Paper = (props) => {
     const [ref, bounds] = useMeasure({ scroll: false });
     const [isHover, setIsHover] = useState(false);
@@ -57,7 +58,8 @@ export default function Box(props) {
 
     return (
         <MotionConfig transition={transitionLong}>
-            <motion.div className="flex flex-col text-center mt-[17.5vh] opacity-0"
+            <motion.div className="flex flex-col text-center mt-[17.5vh]"
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
             >
                 <Text
@@ -73,7 +75,7 @@ export default function Box(props) {
                 </Text>
                 <img src={props.character.image} className='h-[420px] w-[420px] object-cover rounded-lg z-20 drop-shadow-[10px_20px_7px_rgba(171,160,166,0.65)] hover:drop-shadow-[20px_40px_15px_rgba(255,99,71,0.5)] duration-300 hover:duration-300' />
 
-                <div className="flex flex-row rounded-full bg-white mt-16 w-[300px] h-[36px] z-20 pl-4 ml-[60px]">
+                <div className="flex flex-row rounded-full bg-white mt-16 min-w-[300px] max-w-[45vw] h-[36px] z-20 pl-4 ">
                     <Text
                         className="pointer-events-none z-20"
                         h1

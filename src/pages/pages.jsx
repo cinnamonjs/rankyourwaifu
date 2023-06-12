@@ -1,12 +1,10 @@
 import React from 'react';
-import RoundRobinTournament from '@/components/example';
-
+import { RoundRobinTournament } from '@/components/Tournament';
+import { CharacterData } from '@/data/characterdata';
 const Page = () => {
-  const teams = ['A', 'B', 'C', 'D'];
-
   return (
     <div>
-      <RoundRobinTournament teams={teams} />
+      <RoundRobinTournament Characters={CharacterData} />
     </div>
   );
 };

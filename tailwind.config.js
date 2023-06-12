@@ -9,8 +9,12 @@ module.exports = {
       fontFamily: {
        'Inter': ['Inter', 'sans-serif'],
       },
+      
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-image-rendering')(),
+  ],
+  
 }
 

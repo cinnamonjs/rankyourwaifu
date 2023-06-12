@@ -15,4 +15,14 @@ export const CharacterData = [
         image: '/images/fran.jpg',
         anime: 'Reincarnated as a sword',
     },
+    {
+        name: 'Elaina',
+        image: '/images/elaina.jpg',
+        anime: 'Wandering Witch: The Journey of Elaina',
+    },
+    {
+        name: 'Kanade',
+        image: '/images/kanade.jpg',
+        anime: 'Beast tamer',
+    },
 ]

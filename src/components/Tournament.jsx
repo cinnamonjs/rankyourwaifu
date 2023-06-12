@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import Selection from '@/components/Selection';
+import Result from '@/components/result';
 
-const RoundRobinTournament = ({ Characters }) => {
+export const RoundRobinTournament = ({ Characters }) => {
+  // state variables
   const [schedule, setSchedule] = useState([]);
   const [points, setPoints] = useState({});
   const [currentRound, setCurrentRound] = useState(1);
   const [showNext, setShowNext] = useState(true);
   const [showResult, setShowResult] = useState(false);
 
-  useEffect(() => {
-    generateSchedule();
-  }, []);
-
-  // generate the schedule 
+  /** suffle array  */
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  /**  generate the schedule */ 
   const generateSchedule = () => {
     const matches = [];
 
     // Initialize points for each item
     const initialPoints = {};
     Characters.forEach((item) => {
-      initialPoints[item] = 0;
+      initialPoints[item.name] = 0;
     });
     setPoints(initialPoints);
 
@@ -30,26 +37,31 @@ const RoundRobinTournament = ({ Characters }) => {
         matches.push({ Left, Right });
       }
       // Rotate Characters for the next round
-      Characters.splice(1, 0, Characters.pop());
+      shuffleArray(Characters).splice(1, 0, Characters.pop());
     }
     setSchedule(matches);
+    console.log(matches);
   };
-
-  // handle calculation on result button
+  
+  useEffect(() => {
+    generateSchedule();
+  }, []);
+ 
+  /** handle calculation on result button */
   const handleResult = (roundIndex, winner) => {
     const updatedSchedule = [...schedule];
     const match = updatedSchedule[roundIndex];
     // Update points
     const updatedPoints = { ...points };
-    updatedPoints[winner] = (updatedPoints[winner] || 0) + 1;
+    updatedPoints[winner.name] = (updatedPoints[winner.name] || 0) + 1;
     setPoints(updatedPoints);
 
     // Mark the winner in the match
     match.winner = winner;
-
     setSchedule(updatedSchedule);
   };
 
+  /** ranking all characters */
   const rankCharacters = () => {
     const CharactersWithPoints = Object.entries(points).map(([item, point]) => ({ item, point }));
 
@@ -65,19 +77,20 @@ const RoundRobinTournament = ({ Characters }) => {
 
   const rankedCharacters = rankCharacters();
 
-  // find tie Characters by points
+  /** find tie Characters by points */
   const findTiedCharacters = () => {
     if (rankedCharacters.length > 0) {
       const pointsMap = new Map();
       rankedCharacters.forEach(item => {
         const { point } = item;
         if (pointsMap.has(point)) {
-          pointsMap.get(point).push(item);
+          pointsMap.get(point).push({item: Characters.find(data => data.name === item.item), points: item.point});
         } else {
-          pointsMap.set(point, [item]);
+          pointsMap.set(point, [{ item: Characters.find(data => data.name === item.item), points: item.point }]);
         }
+        
       });
-
+      
       const tiedCharacters = Array.from(pointsMap.values())
         .filter(Characters => Characters.length > 1)
         .flatMap(Characters => Characters);
@@ -88,6 +101,7 @@ const RoundRobinTournament = ({ Characters }) => {
     }
   };
 
+  /** generate a list of tied characters */
   const generateTiebreakerMatches = () => {
     const tiedCharacters = findTiedCharacters();
   
@@ -122,7 +136,7 @@ const RoundRobinTournament = ({ Characters }) => {
     return [];
   };
 
-  // function to add tiebreaker round to schedule
+  /** function to add tiebreaker round to schedule */
   const addTiebreakerRound = () => {
     const tiebreakerMatches = generateTiebreakerMatches();
     if (tiebreakerMatches.length > 0) {
@@ -136,7 +150,7 @@ const RoundRobinTournament = ({ Characters }) => {
     return uniquePoints.length === rankedCharacters.length;
   };
 
-  // handle current rounds
+  /** handle current rounds */
   const handleShowNextRound = () => {
     if (!isAllPointsUnique()) {
       if (currentRound >= schedule.length) {
@@ -149,39 +163,20 @@ const RoundRobinTournament = ({ Characters }) => {
       setShowResult(true);
     }
   }
-
+  console.log('points')
+  console.log(rankedCharacters) 
   return (
-    <div>
-      <h1>Round-Robin Tournament Schedule</h1>
-      <h2>Matches</h2>
-      {schedule.map((match, index) => {
-        if (index === currentRound - 1) return (
-        <div key={index}>
-          <p>Round {index + 1}</p>
-          <p>{match.Left} vs {match.Right}</p>
-          {match.winner ? (
-            <p>Win: {match.winner}</p>
-          ) : (
-            <>
-              <button onClick={() => handleResult(index, match.Left)}>Select {match.Left} as winner</button>
-              <button onClick={() => handleResult(index, match.Right)}>Select {match.Right} as winner</button>
-            </>
-          )}
-        </div>
-      )}
-      )}
-      {showNext && (
-        <button onClick={handleShowNextRound}>Next Round</button>
-      )}
-      <h2>Points</h2>
-      {rankedCharacters.map((item, index) => (
-        <p key={index}>{item.item}: {item.point} points</p>
-      ))}
-      {showResult && (
-        <p>we got final answer</p>
-      )}
-    </div>
+    <> 
+      { schedule.length > 0 && !showResult && <Selection 
+        onclick={handleResult}
+        nextRound={handleShowNextRound}
+        object={schedule[currentRound - 1]}
+        index={currentRound - 1}
+      />}
+      { showResult && <Result 
+        RanksArray={rankedCharacters}
+        Characters={Characters}
+      />}
+    </>
   );
 };
-
-export default RoundRobinTournament;

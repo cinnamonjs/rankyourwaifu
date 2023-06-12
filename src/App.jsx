@@ -9,7 +9,7 @@ export const App = () => {
         <BrowserRouter basename='/'>
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/example' element={<Page />} />
+            <Route path='/popular' element={<Page />} />
           </Routes>
         </BrowserRouter>
       </NextUIProvider>
