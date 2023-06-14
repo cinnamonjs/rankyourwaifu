@@ -9,7 +9,8 @@
 *   [Features](#features)
 
 ## General info
-> This project is using client-side rendering only (frond-end), no back end is required. 
+> This project is using client-side rendering only (frond-end), no back end is required.
+> 
 > The website allows users to choose the character they like the most by selecting one of two options
 > Ranking score and give result as table chart data displays to users.
 
