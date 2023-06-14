@@ -1,5 +1,5 @@
 
-### RankYourWaifu - ranking & chart website 
+# RankYourWaifu - ranking & chart website 
 > website used for ranking character in anime created with React and vite.js
 
 ## Table of contents
