@@ -10,3 +10,8 @@ export const transition = {
     bounce: 0.2
   };
   
+  export const transitionShort = {
+    type: "spring",
+    duration: 0.4,
+    bounce: 0.2
+  };

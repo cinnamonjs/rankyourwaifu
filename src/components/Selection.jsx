@@ -44,17 +44,10 @@ export default function Selection(props) {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log('changed')
       setAnimationCompleted(false);
       setIsSelect1(false);
       setIsSelect2(false);
       setIsselectable(false);
-    }, 700);
-    
-    return () => {
-      clearTimeout(timer);
-    };
   }, [props.object]);
 
   return (
@@ -73,8 +66,9 @@ export default function Selection(props) {
       {/* Content box*/}
       <div className='flex flex-row z-10'>
         {/* Title */}
-        <div className='absolute w-[20vw] min-h-[60px] rounded-full drop-shadow-xl ml-16 mt-8 bg-white opacity-75'>
+        <div className='flex flex-row absolute w-[450px] min-h-[60px] rounded-full drop-shadow-xl ml-16 mt-8 bg-white opacity-75'>
             <p className='ml-6 mt-4 font-Inter font-semibold text-xl'>rounds {props.index + 1}</p>
+            <p className='ml-6 mt-4 font-Inter font-light text-xl text-gray-400'>Select by click at character image.</p>
         </div>
         {/* left content (first character) */}
         <motion.button className='flex w-[50vw] h-screen justify-center justify-items-center'

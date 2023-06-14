@@ -52,7 +52,6 @@ export default function Result(props) {
             >
                 Scoreboard
             </Text>
-            
             {/* Top 3 */}
             <div className="flex flex-row w-screen justify-center mb-16 items-end">
                 <div className="flex flex-col mr-16">
