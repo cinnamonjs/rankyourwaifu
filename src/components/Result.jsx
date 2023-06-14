@@ -47,6 +47,7 @@ export default function Result(props) {
                     size={50}
                     css={{
                         textGradient: "145deg, #0F2027 40%, #4DA0B0 70%",
+                        margin: 0,
                     }}
                     weight="bold"
             >
