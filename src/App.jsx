@@ -13,7 +13,7 @@ export const App = () => {
             <Route path='/' element={<HomePage />} />
             <Route path='/fullset' element={<FullsetPage />} />
             <Route path='/devset' element={<DevsetPage />} />
-            <Route path='/Popular' element={<PopularPage />} />
+            <Route path='/popular' element={<PopularPage />} />
           </Routes>
         </BrowserRouter>
       </NextUIProvider>

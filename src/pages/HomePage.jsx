@@ -78,7 +78,7 @@ export default function HomePage() {
                     secondary='based by most fans'
                   />
                  </Link>
-                 <Link to='/popular'>
+                 <Link to='/devset'>
                   <Paper 
                     bg='bg-gradient-to-br from-[#ee0979] to-[#ff6a00]'
                     image='/images/anime2.png'
@@ -86,7 +86,7 @@ export default function HomePage() {
                     secondary='recommended by me'
                   />
                  </Link>
-                 <Link to='/popular'>
+                 <Link to='/fullset'>
                   <Paper 
                     bg='bg-gradient-to-br from-[#BE93C5] to-[#7BC6CC]'
                     image='/images/anime3.png'
