@@ -12,4 +12,4 @@ const FullsetPage = () => {
   );
 };
 
-export default Page;
+export default FullsetPage;

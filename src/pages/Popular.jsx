@@ -12,4 +12,4 @@ const PopularPage = () => {
   );
 };
 
-export default Page;
+export default PopularPage;

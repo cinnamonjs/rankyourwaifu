@@ -12,4 +12,4 @@ const DevsetPage = () => {
   );
 };
 
-export default Page;
+export default DevsetPage;
