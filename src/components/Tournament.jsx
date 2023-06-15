@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Selection from '@/components/Selection';
-import Result from '@/components/result';
+import Result from '@/components/Result';
 
 export const RoundRobinTournament = ({ Characters , PresetName }) => {
   // state variables
