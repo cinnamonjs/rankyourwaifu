@@ -31,16 +31,13 @@ export const RoundRobinTournament = ({ Characters , PresetName }) => {
 
     // Generate matches for the initial rounds
     for (let i = 0; i < Characters.length - 1; i++) {
-      for (let j = 0; j < Characters.length / 2; j++) {
-        const Left = Characters[j];
-        const Right = Characters[Characters.length - 1 - j];
+      for (let j = i + 1; j < Characters.length; j++) {
+        const Left = Characters[i];
+        const Right = Characters[j];
         matches.push({ Left, Right });
       }
-      // Rotate Characters for the next round
-      Characters.splice(1, 0, Characters.pop());
     }
     setSchedule(shuffleArray(matches));
-    console.log(matches);
   };
   
   useEffect(() => {
@@ -163,10 +160,6 @@ export const RoundRobinTournament = ({ Characters , PresetName }) => {
       setShowResult(true);
     }
   }
-  console.log('points')
-  console.log(rankedCharacters) 
-  console.log('numbers of selection')
-  console.log(schedule)
   return (
     <> 
       { schedule.length > 0 && !showResult && <Selection 

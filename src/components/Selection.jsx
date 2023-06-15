@@ -37,7 +37,6 @@ export default function Selection(props) {
   /** handle after selection */
   const resetSelect = (animationId) => {
       if (animationId === 'ButtonAnimation' && isSelectable) {
-        console.log('animationCompleted');
         props.nextRound()
         setAnimationCompleted(true);
       }
