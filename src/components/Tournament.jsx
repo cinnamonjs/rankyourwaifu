@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Selection from '@/components/Selection';
 import Result from '@/components/result';
 
-export const RoundRobinTournament = ({ Characters }) => {
+export const RoundRobinTournament = ({ Characters , PresetName }) => {
   // state variables
   const [schedule, setSchedule] = useState([]);
   const [points, setPoints] = useState({});
@@ -37,9 +37,9 @@ export const RoundRobinTournament = ({ Characters }) => {
         matches.push({ Left, Right });
       }
       // Rotate Characters for the next round
-      shuffleArray(Characters).splice(1, 0, Characters.pop());
+      Characters.splice(1, 0, Characters.pop());
     }
-    setSchedule(matches);
+    setSchedule(shuffleArray(matches));
     console.log(matches);
   };
   
@@ -165,6 +165,8 @@ export const RoundRobinTournament = ({ Characters }) => {
   }
   console.log('points')
   console.log(rankedCharacters) 
+  console.log('numbers of selection')
+  console.log(schedule)
   return (
     <> 
       { schedule.length > 0 && !showResult && <Selection 
@@ -172,10 +174,12 @@ export const RoundRobinTournament = ({ Characters }) => {
         nextRound={handleShowNextRound}
         object={schedule[currentRound - 1]}
         index={currentRound - 1}
+        
       />}
       { showResult && <Result 
         RanksArray={rankedCharacters}
         Characters={Characters}
+        PresetName={PresetName}
       />}
     </>
   );

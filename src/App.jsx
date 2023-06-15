@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NextUIProvider } from '@nextui-org/react';
 import HomePage from '@/pages/HomePage.jsx';
-import Page from '@/pages/pages';
+import FullsetPage from '@/pages/Fullset.jsx';
+import DevsetPage from '@/pages/DevPreset.jsx';
+import PopularPage from '@/pages/Popular.jsx';
 
 export const App = () => {
   return (
@@ -9,7 +11,9 @@ export const App = () => {
         <BrowserRouter basename='/'>
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/popular' element={<Page />} />
+            <Route path='/fullset' element={<FullsetPage />} />
+            <Route path='/devset' element={<DevsetPage />} />
+            <Route path='/Popular' element={<PopularPage />} />
           </Routes>
         </BrowserRouter>
       </NextUIProvider>

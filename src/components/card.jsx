@@ -37,11 +37,13 @@ export const Paper = (props) => {
                     <img src={props.image} className="absolute z-0 h-[300px] w-[220px] object-contain ml-[10px] mt-[10px] drop-shadow-lg" />
                     {/* TEXT */}
                     <div className="flex flex-col z-10">
+                        <div className="pt-2 pb-2 bg-black bg-opacity-40 mt-[200px]">
                         <Text h2 size={12} weight="light" color="white"
-                            css={{ marginLeft: '29px', lineHeight: '8px', marginTop: '220px', textAlign: 'left', letterSpacing: '.5px' }}
+                            css={{ marginLeft: '29px', lineHeight: '8px', textAlign: 'left', letterSpacing: '.5px' }}
                         >
                             {props.secondary}
                         </Text>
+                        </div>
                         <Text h1 size={40} weight="bold" color="white"
                             css={{ marginLeft: '27px', lineHeight: '44px', marginTop: '0px', textAlign: 'left' }}
                         >
@@ -73,9 +75,9 @@ export default function Box(props) {
                 >
                     {props.character.name}
                 </Text>
-                <img src={props.character.image} className='h-[420px] w-[420px] object-cover rounded-lg z-20 drop-shadow-[10px_20px_7px_rgba(171,160,166,0.65)] hover:drop-shadow-[20px_40px_15px_rgba(255,99,71,0.5)] duration-300 hover:duration-300' />
+                <img src={props.character.image} className='h-[420px] w-[420px] object-cover rounded-lg z-20 drop-shadow-[5px_10px_5px_rgba(0,0,0,0.2)] hover:drop-shadow-[20px_40px_5px_rgba(0,0,0,0.2)] duration-300 hover:duration-300' />
 
-                <div className="flex flex-row rounded-full bg-white mt-16 min-w-[300px] max-w-[45vw] h-[36px] z-20 pl-4 ">
+                <div className="flex flex-row rounded-full bg-white mt-16 min-w-[300px] max-w-[45vw] h-[36px] z-20 pl-4">
                     <Text
                         className="pointer-events-none z-20"
                         h1

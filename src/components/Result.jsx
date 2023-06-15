@@ -40,9 +40,11 @@ export default function Result(props) {
 
     return (
         <>
+        
         <div className="relative w-screen min-h-[100vh] bg-gray-100 top-0 left-0">
+            {/* Head Text */}
             <Text
-                    className="pl-[50vw] pt-[9vh] pb-8 pointer-events-none z-20 -translate-x-1/4"
+                    className="pl-[50vw] pt-[9vh] pb-1 pointer-events-none z-20 -translate-x-1/4"
                     h1
                     size={50}
                     css={{
@@ -53,6 +55,8 @@ export default function Result(props) {
             >
                 Scoreboard
             </Text>
+            <p className="font-Inter font-medium ml-2 text-lg pl-[49.7vw] pb-7 -translate-x-1/4">Preset: {props.PresetName}</p>
+
             {/* Top 3 */}
             <div className="flex flex-row w-screen justify-center mb-16 items-end">
                 <div className="flex flex-col mr-16">

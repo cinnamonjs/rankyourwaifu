@@ -75,21 +75,25 @@ export default function HomePage() {
                     bg='bg-gradient-to-br from-[#B993D6] to-[#8CA6DB]'
                     image='/images/anime1.png'
                     primary='popular anime'
-                    secondary='most fans'
+                    secondary='based by most fans'
                   />
                  </Link>
-                 <Paper 
-                  bg='bg-gradient-to-br from-[#ee0979] to-[#ff6a00]'
-                  image='/images/anime2.png'
-                  primary="dev's presets"
-                  secondary='recommended by me'
-                 />
-                 <Paper 
-                  bg='bg-gradient-to-br from-[#BE93C5] to-[#7BC6CC]'
-                  image='/images/anime3.png'
-                  primary='all anime I know'
-                  secondary='take loooooonnnnng time'
-                 />
+                 <Link to='/popular'>
+                  <Paper 
+                    bg='bg-gradient-to-br from-[#ee0979] to-[#ff6a00]'
+                    image='/images/anime2.png'
+                    primary="dev's presets"
+                    secondary='recommended by me'
+                  />
+                 </Link>
+                 <Link to='/popular'>
+                  <Paper 
+                    bg='bg-gradient-to-br from-[#BE93C5] to-[#7BC6CC]'
+                    image='/images/anime3.png'
+                    primary='Full set (30) preset'
+                    secondary='400-600 click (hardcore users)'
+                  />
+                 </Link>
           </div>
           
           {/* footer */}
