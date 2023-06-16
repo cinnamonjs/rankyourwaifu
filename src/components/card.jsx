@@ -77,12 +77,12 @@ export default function Box(props) {
                 </Text>
                 <img src={props.character.image} className='h-[420px] w-[420px] object-cover rounded-lg z-20 drop-shadow-[5px_10px_5px_rgba(0,0,0,0.2)] hover:drop-shadow-[20px_40px_5px_rgba(0,0,0,0.2)] duration-300 hover:duration-300' />
 
-                <div className="flex flex-row rounded-full bg-white mt-16 min-w-[300px] max-w-[45vw] h-[36px] z-20 pl-4">
+                <div className="flex flex-row rounded-full bg-white mt-16 min-w-[300px] max-w-[45vw] h-[36px] z-20 pl-4 pt-[12px]">
                     <Text
                         className="pointer-events-none z-20"
                         h1
                         size={18}
-                        css={{lineHeight: '12px'}}
+                        css={{lineHeight: '12px', margin: '0'}}
                         weight="semibold"
                     >
                         Fromㅤ
@@ -92,7 +92,7 @@ export default function Box(props) {
                         h1
                         size={18}
                         weight="normal"
-                        css={{lineHeight: '12px'}}
+                        css={{lineHeight: '12px', margin: '0'}}
                     >
                         {props.character.anime}
                     </Text>
