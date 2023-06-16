@@ -39,7 +39,7 @@ export const Paper = (props) => {
                     <div className="flex flex-col z-10">
                         <div className="pt-2 pb-2 bg-black bg-opacity-40 mt-[200px]">
                         <Text h2 size={12} weight="light" color="white"
-                            css={{ marginLeft: '29px', lineHeight: '8px', textAlign: 'left', letterSpacing: '.5px' }}
+                            css={{ marginLeft: '29px', lineHeight: '8px', textAlign: 'left', letterSpacing: '.5px' , marginTop: '0.5px', marginBottom: '2px' }}
                         >
                             {props.secondary}
                         </Text>
@@ -60,12 +60,12 @@ export default function Box(props) {
 
     return (
         <MotionConfig transition={transitionLong}>
-            <motion.div className="flex flex-col text-center mt-[17.5vh]"
+            <motion.div className="flex flex-col text-center mt-[7vh] md:mt-[17.5vh]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
             >
                 <Text
-                    className="pointer-events-none z-20"
+                    className="pointer-events-none z-20 max-sm:text-xl"
                     h1
                     size={50}
                     css={{
@@ -75,11 +75,11 @@ export default function Box(props) {
                 >
                     {props.character.name}
                 </Text>
-                <img src={props.character.image} className='h-[420px] w-[420px] object-cover rounded-lg z-20 drop-shadow-[5px_10px_5px_rgba(0,0,0,0.2)] hover:drop-shadow-[20px_40px_5px_rgba(0,0,0,0.2)] duration-300 hover:duration-300' />
+                <img src={props.character.image} className='ml-[50vw] -translate-x-[66.6%] md:ml-0 md:translate-x-0 h-[140px] w-[140px] md:h-[420px] md:w-[420px] object-cover rounded-lg z-20 drop-shadow-[5px_10px_5px_rgba(0,0,0,0.2)] hover:drop-shadow-[20px_40px_5px_rgba(0,0,0,0.2)] duration-300 hover:duration-300' />
 
-                <div className="flex flex-row rounded-full bg-white mt-16 min-w-[300px] max-w-[45vw] h-[36px] z-20 pl-4 pt-[12px]">
+                <div className="flex flex-row rounded-full bg-white mt-4 md:mt-16 min-w-[280px] h-[24px] md:min-w-[300px] md:max-w-[45vw] md:h-[36px] z-20 pl-4 pt-[12px]">
                     <Text
-                        className="pointer-events-none z-20"
+                        className="pointer-events-none z-20 max-sm:text-sm max-sm:mt-[-9px]"
                         h1
                         size={18}
                         css={{lineHeight: '12px', margin: '0'}}
@@ -88,7 +88,7 @@ export default function Box(props) {
                         Fromㅤ
                     </Text>
                     <Text
-                        className="pointer-events-none z-20 truncated"
+                        className="pointer-events-none z-20 truncated max-sm:text-sm max-sm:mt-[-9px]"
                         h1
                         size={18}
                         weight="normal"

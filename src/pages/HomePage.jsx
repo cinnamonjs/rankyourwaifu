@@ -42,7 +42,7 @@ export default function HomePage() {
         <div className="flex flex-col relative top-[7vh] items-center justify-center w-screen"
         onMouseMove={handleMouseMove}
         > 
-          <div className="flex flex-row">
+          <div className="flex flex-row ml-12 md:ml-0">
                 <Text
                   className="pointer-events-none"
                   h1
@@ -55,7 +55,7 @@ export default function HomePage() {
                 Rank Your Waifu
                 </Text>
           </div>  
-          <img src="https://media.tenor.com/-vOy1q13l7oAAAAC/kaon-priconne.gif" className="ml-2 rounded-xl drop-shadow-[0_15px_30px_rgba(255,99,71,0.5)]"></img>
+          <img src="https://media.tenor.com/-vOy1q13l7oAAAAC/kaon-priconne.gif" className="ml-2 rounded-xl drop-shadow-[0_15px_30px_rgba(255,99,71,0.5)] w-[80vw] md:h-[232.7px] md:w-[413.8px]"></img>
           {/* secondary text */}
           <div className="mt-16">
           <Text
@@ -69,7 +69,7 @@ export default function HomePage() {
           </div>
 
           {/* sub context cards */}
-          <div className="flex flex-row justify-center items-center h-[250px] mt-16 ">
+          <div className="flex justify-center items-center h-[250px] mt-[440px] md:mt-16 flex-col sm:flex-col md:flex-row ">
                 <Link to='/popular'>
                   <Paper 
                     bg='bg-gradient-to-br from-[#B993D6] to-[#8CA6DB]'
@@ -97,7 +97,7 @@ export default function HomePage() {
           </div>
           
           {/* footer */}
-          <div className="mt-32 flex flex-row">
+          <div className="mt-[440px] mb-10 md:mt-32 flex flex-row">
               <div className="underline underline-offset-2 font-semibold font-Inter text-[12px] text-gray-700">FAQ</div>
               <div className="ml-1 font-light font-Inter text-[12px] text-gray-700">if u want to suggest anime to me, contact me =w=</div>
           </div>

@@ -52,25 +52,30 @@ export default function Selection(props) {
   return (
     <MotionConfig transition={transition}>
       {/* background */}
-      <motion.div className=" bg-red-100 w-[50vw] h-[100vh] absolute z-0"
+      <motion.div className=" bg-red-100 w-screen h-[50vh] md:w-[50vw] md:h-[100vh] absolute z-0"
         animate={{ opacity: 1, x: 0 }} 
       >
       </motion.div>
 
-      <motion.div className=" bg-blue-100 w-[50vw] h-[100vh] absolute z-0"
+      <motion.div className=" bg-blue-100 w-[50vw] h-[100vh] absolute z-0 hidden md:flex"
         animate={{ opacity: 1, x: '50vw' }}
       >
       </motion.div>
 
+      <motion.div className=" bg-blue-100 w-screen h-[50vh] absolute z-0 flex md:hidden"
+        animate={{ opacity: 1, y: '50vh' }}
+      >
+      </motion.div>
+
       {/* Content box*/}
-      <div className='flex flex-row z-10'>
+      <div className='flex flex-col md:flex-row z-10'>
         {/* Title */}
-        <div className='flex flex-row absolute w-[450px] min-h-[60px] rounded-full drop-shadow-xl ml-16 mt-8 bg-white opacity-75'>
-            <p className='ml-6 mt-4 font-Inter font-semibold text-xl'>rounds {props.index + 1}</p>
-            <p className='ml-6 mt-4 font-Inter font-light text-xl text-gray-400'>Select by click at character image.</p>
+        <div className='flex flex-row absolute w-[320px] min-h-[33px] md:w-[450px] md:min-h-[60px] rounded-full drop-shadow-xl ml-7 md:ml-16 mt-5 bg-white opacity-75'>
+            <p className='ml-6 mt-[7px] md:mt-4 font-Inter font-semibold text-sm md:text-xl'>rounds {props.index + 1}</p>
+            <p className='ml-6 mt-[7px] md:mt-4 font-Inter font-light text-sm md:text-xl text-gray-400'>Select by click at character image.</p>
         </div>
         {/* left content (first character) */}
-        <motion.button className='flex w-[50vw] h-screen justify-center justify-items-center'
+        <motion.button className='flex w-screen h-[50vh] md:w-[50vw] md:h-screen justify-center justify-items-center'
           animate={isSelect1 ? "selected" : "idle"}
           variants={{
             selected: { scale: 0.5, opacity: 0 },
@@ -85,7 +90,7 @@ export default function Selection(props) {
         </motion.button>
 
         {/* right content (second character) */}
-        <motion.button className='flex w-[50vw] h-screen left-[50vw] justify-center justify-items-center overflow-auto'
+        <motion.button className='flex w-screen h-[50vh] md:w-[50vw] md:h-screen left-0 md:left-[50vw] top-[50vh] md:top-0 justify-center justify-items-center overflow-auto'
           animate={isSelect2 ? "selected" : "idle"}
           variants={{
             selected: { scale: 0.5, opacity: 0 },
